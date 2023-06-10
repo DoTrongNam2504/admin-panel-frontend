@@ -1,4 +1,4 @@
-import React from "react";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -34,7 +34,7 @@ import {
   PieChartOutlined,
 } from "@mui/icons-material";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./../components/FlexBetween";
 import profileImage from "../assets/profile.jpeg";
@@ -106,14 +106,14 @@ const navItems = [
 ];
 
 const Sidebar = ({ drawerWidth, openSidebar, setOpenSidebar, isNonMobile }) => {
-  const { pathName } = useLocation();
+  const { pathname } = useLocation();
   const [active, setActive] = useState("");
   const navigate = useNavigate();
   const theme = useTheme();
 
   useEffect(() => {
-    setActive(pathName && pathName.substring(1));
-  }, [pathName]);
+    setActive(pathname.substring(1));
+  }, [pathname]);
 
   return (
     <Box component="nav">
@@ -123,28 +123,28 @@ const Sidebar = ({ drawerWidth, openSidebar, setOpenSidebar, isNonMobile }) => {
           anchor="left"
           open={openSidebar}
           onClose={() => setOpenSidebar(false)}
-          sx={{
-            with: drawerWidth,
-            "&.MuiDrawer-paper": {
-              color: theme.palette.secondary.alt,
-              backgroundColor: theme.palette.background.main,
+           sx={{
+            width: drawerWidth,
+            "& .MuiDrawer-paper": {
+              color: theme.palette.secondary[200],
+              backgroundColor: theme.palette.background.alt,
+              boxSixing: "border-box",
+              borderWidth: isNonMobile ? 0 : "2px",
               width: drawerWidth,
-              boxSizing: "border-box",
-              borderWidth: isNonMobile ? 0 : "2px ",
             },
           }}
         >
           <Box width="100%">
-            <Box m="1.5rem 2rem 2rem 3rem ">
+            <Box m= {isNonMobile ? "1.5rem 2rem 2rem 3rem" : "1.5rem 1rem 2rem 1.5rem"}>
               <FlexBetween color={theme.palette.secondary.alt}>
                 <Box>
                   <Typography variant="h4" fontWeight="bold">
                     ECOMMERCE
                   </Typography>
                 </Box>
-                {isNonMobile && (
+                {!isNonMobile && (
                   <IconButton onClick={() => setOpenSidebar(!openSidebar)}>
-                    <ChevronLeftOutlined />
+                    <MenuIcon />
                   </IconButton>
                 )}
               </FlexBetween>
@@ -167,12 +167,15 @@ const Sidebar = ({ drawerWidth, openSidebar, setOpenSidebar, isNonMobile }) => {
                         setActive(lcText);
                       }}
                       sx={{
-                        backgroudColor:
+                        backgroundColor :
                           active === lcText
                             ? theme.palette.secondary[300]
                             : "transparent",
-                        color:
-                          {/*1h29p16s*/}
+                            color:
+                            active === lcText
+                              ? theme.palette.primary[600]
+                              : theme.palette.secondary[200],
+                        
                       }}
                     >
                       <ListItemIcon
@@ -186,6 +189,8 @@ const Sidebar = ({ drawerWidth, openSidebar, setOpenSidebar, isNonMobile }) => {
                       >
                         {icon}
                       </ListItemIcon>
+                      <ListItemText primary={text} />
+                      {active === lcText && <ChevronRightOutlined sx= {{ ml:'auto' }} />}
                     </ListItemButton>
                   </ListItem>
                 );
