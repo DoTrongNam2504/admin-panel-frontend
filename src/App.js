@@ -6,12 +6,12 @@ import { useMemo } from "react";
 import { BrowserRouter,Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./scenes/layout";
 import Dashboard from "./scenes/dashboard";
+import Product from "./scenes/products";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
-    <div className="App">
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -19,11 +19,11 @@ function App() {
             <Route element = {<Layout/>}>
               <Route path= "/" element = {<Navigate to ="/dashboard"/>} replace />
               <Route path = "/dashboard" element = {<Dashboard />} />
+              <Route path = "/products" element = {<Product/> } />
             </Route>  
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
-    </div>
   );
 }
 

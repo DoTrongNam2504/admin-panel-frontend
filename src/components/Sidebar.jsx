@@ -1,25 +1,17 @@
-
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material";
+import Divider from "@mui/material/Divider";
 
 import {
-  SettingsOutlined,
-  ChevronLeftOutlined,
   ChevronRightOutlined,
   HomeOutlined,
   ShoppingCartOutlined,
@@ -33,11 +25,11 @@ import {
   TrendingUpOutlined,
   PieChartOutlined,
 } from "@mui/icons-material";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./../components/FlexBetween";
-import profileImage from "../assets/profile.jpeg";
 
 const navItems = [
   {
@@ -105,7 +97,13 @@ const navItems = [
   },
 ];
 
-const Sidebar = ({ drawerWidth, openSidebar, setOpenSidebar, isNonMobile }) => {
+const Sidebar = ({
+  user,
+  drawerWidth,
+  openSidebar,
+  setOpenSidebar,
+  isNonMobile,
+}) => {
   const { pathname } = useLocation();
   const [active, setActive] = useState("");
   const navigate = useNavigate();
@@ -123,7 +121,7 @@ const Sidebar = ({ drawerWidth, openSidebar, setOpenSidebar, isNonMobile }) => {
           anchor="left"
           open={openSidebar}
           onClose={() => setOpenSidebar(false)}
-           sx={{
+          sx={{
             width: drawerWidth,
             "& .MuiDrawer-paper": {
               color: theme.palette.secondary[200],
@@ -135,11 +133,17 @@ const Sidebar = ({ drawerWidth, openSidebar, setOpenSidebar, isNonMobile }) => {
           }}
         >
           <Box width="100%">
-            <Box m= {isNonMobile ? "1.5rem 2rem 2rem 3rem" : "1.5rem 1rem 2rem 1.5rem"}>
+            <Box
+              m={
+                isNonMobile
+                  ? "1.5rem 2rem 2rem 3rem"
+                  : "1.5rem 1rem 2rem 1.5rem"
+              }
+            >
               <FlexBetween color={theme.palette.secondary.alt}>
                 <Box>
                   <Typography variant="h4" fontWeight="bold">
-                    ECOMMERCE
+                    E-COMMERCE
                   </Typography>
                 </Box>
                 {!isNonMobile && (
@@ -167,15 +171,14 @@ const Sidebar = ({ drawerWidth, openSidebar, setOpenSidebar, isNonMobile }) => {
                         setActive(lcText);
                       }}
                       sx={{
-                        backgroundColor :
+                        backgroundColor:
                           active === lcText
                             ? theme.palette.secondary[300]
                             : "transparent",
-                            color:
-                            active === lcText
-                              ? theme.palette.primary[600]
-                              : theme.palette.secondary[200],
-                        
+                        color:
+                          active === lcText
+                            ? theme.palette.primary[600]
+                            : theme.palette.secondary[200],
                       }}
                     >
                       <ListItemIcon
@@ -190,12 +193,51 @@ const Sidebar = ({ drawerWidth, openSidebar, setOpenSidebar, isNonMobile }) => {
                         {icon}
                       </ListItemIcon>
                       <ListItemText primary={text} />
-                      {active === lcText && <ChevronRightOutlined sx= {{ ml:'auto' }} />}
+                      {active === lcText && (
+                        <ChevronRightOutlined sx={{ ml: "auto" }} />
+                      )}
                     </ListItemButton>
                   </ListItem>
                 );
               })}
             </List>
+          </Box>
+
+          <Box position="fixed" bottom="0" backgroundColor= {theme.palette.background.alt} >
+            <Divider />
+            <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 1rem 2rem"  >
+              <Box
+                component="img"
+                src={user.avatar}
+                alt="Profile Image"
+                width="40px"
+                height="40px"
+                borderRadius="50%"
+                sx={{ objectFit: "cover" }}
+              />
+              <Box textAlign="left">
+                <Typography
+                  fontWeight="bold"
+                  fontSize="0.9rem "
+                  sx={{ color: theme.palette.secondary[100] }}
+                >
+                  {user.name}
+                </Typography>
+
+                <Typography
+                  fontSize="0.8rem "
+                  sx={{ color: theme.palette.secondary[200] }}
+                >
+                  {user.role}
+                </Typography>
+              </Box>
+              <SettingsOutlinedIcon
+                sx={{
+                  color: theme.palette.secondary[300],
+                  fontSize: "25px",
+                }}
+              />
+            </FlexBetween>
           </Box>
         </Drawer>
       )}
