@@ -3,7 +3,7 @@ import {
   LightModeOutlined,
   DarkModeOutlined,
   Menu as MenuIcon,
-  Search,
+  Search,Settings
 } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,12 +11,10 @@ import { useDispatch } from "react-redux";
 import { setMode } from "../state";
 import SettingsIcon from "@mui/icons-material/Settings";
 import InputBase from "@mui/material/InputBase";
-import { AppBar, useTheme } from "@mui/material";
 import FlexBetween from "./FlexBetween";
-import { Box, Typography, Button, Menu, MenuItem } from "@mui/material";
+import { Box, Typography, Menu, MenuItem,  AppBar, useTheme } from "@mui/material";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 
 const Navbar = ({ user, openSidebar, setOpenSidebar }) => {
