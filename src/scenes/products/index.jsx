@@ -1,4 +1,4 @@
-import React, {Navigate} from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import {  Button } from "@mui/material";
@@ -41,27 +41,22 @@ const columns = [
   {
     field: "category",
     headerName: "Category",
-    flex: 1,
+    flex: .5,
     editable: true,
   },
-  {
-    field: "created_at",
-    headerName: "Create At",
-    flex: 1,
-    editable: true,
-  },
+  
   {
     field: "stock",
     headerName: "Stock",
     type: "number",
-    flex: 1,
+    flex: .5,
     editable: true,
   },
   {
     field: "price",
     headerName: "Price",
     type: "number",
-    flex: 1,
+    flex: .5,
   },
   {
     field: "publish",
@@ -88,7 +83,6 @@ const rows = [
       "https://api-prod-minimal-v5.vercel.app/assets/images/m_product/product_17.jpg",
     name: "2750 Cotu Classic Sneaker",
     category: "Apparel",
-    created_at: "2021-01-01T00:00:00.000Z",
     stock: 100,
     price: 100,
     publish: true,
@@ -99,7 +93,6 @@ const rows = [
       "https://api-prod-minimal-v5.vercel.app/assets/images/m_product/product_17.jpg",
     name: "ASMC Winter Boot Cold.Rdy",
     category: "Shose",
-    created_at: "2021-01-01T00:00:00.000Z",
     stock: 107000,
     price: 100990,
     publish: false,
@@ -110,7 +103,6 @@ const rows = [
       "https://api-prod-minimal-v5.vercel.app/assets/images/m_product/product_17.jpg",
     name: "Air Jordan XXXV PF",
     category: "Apparel",
-    created_at: "2021-01-01T00:00:00.000Z",
     stock: 323100,
     price: 324100,
     publish: true,
@@ -121,7 +113,6 @@ const rows = [
       "https://api-prod-minimal-v5.vercel.app/assets/images/m_product/product_17.jpg",
     name: "Arizona Soft Footbed Sandal",
     category: "Shose",
-    created_at: "2021-01-01T00:00:00.000Z",
     stock: 56100,
     price: 4100,
     publish: false,
@@ -132,7 +123,6 @@ const rows = [
       "https://api-prod-minimal-v5.vercel.app/assets/images/m_product/product_17.jpg",
     name: "Boston Soft Footbed Sandal",
     category: "Shose",
-    created_at: "2021-01-01T00:00:00.000Z",
     stock: 4100,
     price: 900100,
     publish: true,
@@ -143,7 +133,6 @@ const rows = [
       "https://api-prod-minimal-v5.vercel.app/assets/images/m_product/product_20.jpg",
     name: "Chuck 70 Hi Sneaker",
     category: "Apparel",
-    created_at: "2021-01-01T00:00:00.000Z",
     stock: 2100,
     price: 8100,
     publish: false,
@@ -154,7 +143,6 @@ const rows = [
       "https://api-prod-minimal-v5.vercel.app/assets/images/m_product/product_17.jpg",
     name: "Foundations Matte Flip Flop",
     category: "Shose",
-    created_at: "2021-01-01T00:00:00.000Z",
     stock: 1200,
     price: 11100,
     publish: true,
@@ -165,8 +153,7 @@ const rows = [
       "https://api-prod-minimal-v5.vercel.app/assets/images/m_product/product_7.jpg",
     name: "Gazelle Vintage low-top sneakers",
     category: "Accessories",
-    created_at: "2021-01-01T00:00:00.000Z",
-    stock: 1002,
+      stock: 1002,
     price: 398000,
     publish: true,
   },
